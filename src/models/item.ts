@@ -1,78 +1,66 @@
 import { Table, Column, CreatedAt, Model, DataType } from 'sequelize-typescript';
 
 @Table
-export class Driver extends Model<Driver> {
+export class Item extends Model<Item> {
     @Column({
         type: DataType.INTEGER,
         allowNull: false,
     })
-    company_id: number;
+    customer_id: number;
+    
+    @Column({
+        type: DataType.STRING,
+        allowNull: false,
+    })
+    name: string;
 
     @Column({
         type: DataType.STRING,
         allowNull: false,
     })
-    license: string;
+    title: string;
 
     @Column({
         type: DataType.STRING,
         allowNull: false,
     })
-    type: string;
+    description: string;
 
     @Column({
         type: DataType.INTEGER,
         allowNull: false,
     })
-    max_weight: number;
+    count: number;
 
     @Column({
-        type: DataType.BOOLEAN,
+        type: DataType.INTEGER,
         allowNull: false,
     })
-    substitute_driver: boolean;
+    weight: number;
 
     @Column({
-        type: DataType.STRING,
+        type: DataType.INTEGER,
         allowNull: false,
     })
-    brand: string;
-
-    @Column({
-        type: DataType.STRING,
-        allowNull: false,
-    })
-    model: string;
+    height: number;
 
     @Column({
         type: DataType.STRING,
         allowNull: false,
     })
-    collor: string;
+    product_type: string;
 
     @Column({
         type: DataType.STRING,
         allowNull: false,
     })
-    license_plates: string;
-
-    @Column({
-        type: DataType.BOOLEAN,
-        allowNull: false,
-    })
-    is_active: boolean;
+    pick_up_address: string;
 
     @Column({
         type: DataType.STRING,
         allowNull: false,
     })
-    username: string;
-
-    @Column({
-        type: DataType.TEXT,
-        allowNull: false,
-    })
-    password: string;
+    pick_down_address: string;
 
     @CreatedAt
     createdAt: Date;
