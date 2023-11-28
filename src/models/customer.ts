@@ -1,4 +1,7 @@
-import { Table, Column, CreatedAt, Model, DataType } from 'sequelize-typescript';
+import {Table, Column, CreatedAt, Model, DataType, HasMany, BelongsToMany} from 'sequelize-typescript';
+import { Item } from "./item";
+import { Review } from "./review";
+import { Driver } from "./driver";
 
 @Table
 export class Customer extends Model<Customer> {
@@ -37,6 +40,12 @@ export class Customer extends Model<Customer> {
         allowNull: false,
     })
     passport_image: string;
+
+    @HasMany(() => Item)
+    items: Item[];
+
+    @BelongsToMany(() => Driver, () => Review)
+    drivers: Driver[];
 
     @CreatedAt
     createdAt: Date;

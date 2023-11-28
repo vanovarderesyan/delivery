@@ -1,13 +1,10 @@
-import { Table, Column, CreatedAt, Model, DataType } from 'sequelize-typescript';
+import {Table, Column, CreatedAt, Model, DataType, ForeignKey, BelongsTo, BelongsToMany} from 'sequelize-typescript';
+import { Customer } from "./customer";
+import { Driver_Item } from "./driver_item";
+import { Driver } from "./driver";
 
 @Table
 export class Item extends Model<Item> {
-    @Column({
-        type: DataType.INTEGER,
-        allowNull: false,
-    })
-    customer_id: number;
-    
     @Column({
         type: DataType.STRING,
         allowNull: false,
@@ -61,6 +58,16 @@ export class Item extends Model<Item> {
         allowNull: false,
     })
     pick_down_address: string;
+
+    @ForeignKey(() => Customer)
+    @Column
+    customer_id: number;
+
+    @BelongsTo(() => Customer)
+    customer: Customer;
+
+    @BelongsToMany(() => Driver, () => Driver_Item)
+    drivers: Driver[];
 
     @CreatedAt
     createdAt: Date;

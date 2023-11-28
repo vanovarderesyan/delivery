@@ -1,4 +1,6 @@
-import { Table, Column, CreatedAt, Model, DataType } from 'sequelize-typescript';
+import {Table, Column, CreatedAt, Model, DataType, ForeignKey} from 'sequelize-typescript';
+import { Driver } from "./driver";
+import { Driver_Item } from "./driver_item";
 
 @Table
 export class Settings extends Model<Settings> {

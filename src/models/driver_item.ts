@@ -1,17 +1,13 @@
-import { Table, Column, CreatedAt, Model, DataType } from 'sequelize-typescript';
+import {Table, Column, CreatedAt, Model, DataType, BelongsToMany, ForeignKey} from 'sequelize-typescript';
+import { Driver } from "./driver";
+import { Item } from "./item";
 
 @Table
 export class Driver_Item extends Model<Driver_Item> {
-    @Column({
-        type: DataType.INTEGER,
-        allowNull: false,
-    })
+    @ForeignKey(() => Driver)
     driver_id: number;
 
-    @Column({
-        type: DataType.INTEGER,
-        allowNull: false,
-    })
+    @ForeignKey(() => Item)
     item_id: number;
 
     @Column({
@@ -25,7 +21,7 @@ export class Driver_Item extends Model<Driver_Item> {
         allowNull: false,
     })
     status: string;
-    
+
     @CreatedAt
     createdAt: Date;
 }

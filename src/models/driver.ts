@@ -1,13 +1,12 @@
-import { Table, Column, CreatedAt, Model, DataType } from 'sequelize-typescript';
+import {Table, Column, CreatedAt, Model, DataType, BelongsTo, ForeignKey, BelongsToMany} from 'sequelize-typescript';
+import { Company } from "./company";
+import { Item } from "./item";
+import { Driver_Item } from "./driver_item";
+import { Customer } from "./customer";
+import { Review } from "./review";
 
 @Table
 export class Driver extends Model<Driver> {
-    @Column({
-        type: DataType.INTEGER,
-        allowNull: false,
-    })
-    company_id: number;
-
     @Column({
         type: DataType.STRING,
         allowNull: false,
@@ -48,7 +47,7 @@ export class Driver extends Model<Driver> {
         type: DataType.STRING,
         allowNull: false,
     })
-    collor: string;
+    color: string;
 
     @Column({
         type: DataType.STRING,
@@ -73,6 +72,19 @@ export class Driver extends Model<Driver> {
         allowNull: false,
     })
     password: string;
+
+    @ForeignKey(() => Company)
+    @Column
+    company_id: number;
+
+    @BelongsTo(() => Company)
+    company: Company;
+
+    @BelongsToMany(() => Item, () => Driver_Item)
+    items: Item[];
+
+    @BelongsToMany(() => Customer, () => Review)
+    customers: Customer[];
 
     @CreatedAt
     createdAt: Date;
