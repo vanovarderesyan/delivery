@@ -12,4 +12,4 @@ export class AdminService {
     async create(data): Promise<Admin> {
         return await Admin.create(data);
     }
-}
+  }

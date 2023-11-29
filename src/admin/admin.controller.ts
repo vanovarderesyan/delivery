@@ -1,14 +1,21 @@
-import { Controller, Get, Post } from '@nestjs/common';
+import { Controller, Post, Get, Body } from '@nestjs/common';
+import { AdminDto } from 'src/dtoS/admin';
+import { InjectModel } from '@nestjs/sequelize';
+import { Admin } from 'src/models/admin';
+import { AdminService } from './admin.service';
 
-@Controller('auth')
+
+@Controller()
 export class AdminController {
-    @Post('register')
-    create(): string {
-        return 'This action returns all cats';
-    }
+  constructor(private adminService: AdminService) {}
 
-    @Get('a')
-    find(): string {
-        return 'aaaaaaa'
-    }
+  @Post('register')
+  async create(@Body() adminDto: AdminDto) {
+    return await this.adminService.create(adminDto);
+  }
+  
+  @Get('/a')
+  async get() {
+    return 'aaaaaaaaaaaaaaa';
+  }
 }
