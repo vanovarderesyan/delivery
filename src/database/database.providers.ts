@@ -12,7 +12,7 @@ import { SequelizeModuleOptions, SequelizeOptionsFactory } from '@nestjs/sequeli
 export class SequelizeConfigService implements SequelizeOptionsFactory {
     createSequelizeOptions(): SequelizeModuleOptions {
       return {
-        ...databaseConfig,
+        //...databaseConfig,
         autoLoadModels: true,
         synchronize: true, // set to true only in development to auto-create tables
         models: [Admin, Company, Driver, Item, Customer, Driver_Item, Review, Settings], // Specify your Sequelize model(s) here
