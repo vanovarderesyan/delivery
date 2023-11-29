@@ -1,8 +1,15 @@
 import { Module } from '@nestjs/common';
-import { databaseProviders } from './database.providers';
+import { SequelizeConfigService } from './database.providers';
+import { SequelizeModule } from '@nestjs/sequelize';
+import { Admin } from 'src/models/admin';
 
 @Module({
-    providers: [...databaseProviders],
-    exports: [...databaseProviders],
+    imports: [
+        SequelizeModule.forRootAsync({
+            useClass: SequelizeConfigService,
+        }),
+    ],
+    providers: [],
+    exports: [],
 })
 export class DatabaseModule { }

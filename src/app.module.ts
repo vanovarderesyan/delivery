@@ -9,7 +9,7 @@ import { AdminModule } from './admin/admin.module';
   imports: [
     ConfigModule.forRoot({ isGlobal: true }),
     DatabaseModule,
-    AdminModule
+    //AdminModule
   ],
   controllers: [AppController],
   providers: [AppService],

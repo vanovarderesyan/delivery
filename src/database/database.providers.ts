@@ -1,5 +1,3 @@
-import { Sequelize } from 'sequelize-typescript';
-import { SEQUELIZE, DEVELOPMENT, PRODUCTION } from '../constants';
 import { databaseConfig } from './database.config';
 import { Admin } from "../models/admin";
 import { Company } from "../models/company";
@@ -9,26 +7,15 @@ import { Customer } from "../models/customer";
 import { Driver_Item } from "../models/driver_item";
 import { Review } from "../models/review";
 import { Settings } from "../models/settings";
+import { SequelizeModuleOptions, SequelizeOptionsFactory } from '@nestjs/sequelize';
 
-
-export const databaseProviders = [{
-    provide: SEQUELIZE,
-    useFactory: async () => {
-        let config;
-        switch (process.env.NODE_ENV) {
-            case DEVELOPMENT:
-                config = databaseConfig.development;
-                break;
-            case PRODUCTION:
-                config = databaseConfig.production;
-                break;
-            default:
-                config = databaseConfig.development;
-        }
-        const sequelize = new Sequelize(config);
-        // add models here
-        sequelize.addModels([Admin, Company, Driver, Item, Customer, Driver_Item, Review, Settings]);
-        await sequelize.sync();
-        return sequelize;
-    },
-}];
+export class SequelizeConfigService implements SequelizeOptionsFactory {
+    createSequelizeOptions(): SequelizeModuleOptions {
+      return {
+        ...databaseConfig,
+        autoLoadModels: true,
+        synchronize: true, // set to true only in development to auto-create tables
+        models: [Admin, Company, Driver, Item, Customer, Driver_Item, Review, Settings], // Specify your Sequelize model(s) here
+      };
+    }
+  }
