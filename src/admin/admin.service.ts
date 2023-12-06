@@ -1,15 +1,14 @@
-import { Injectable } from '@nestjs/common';
-import { InjectModel } from '@nestjs/sequelize';
+import { Injectable, Inject } from '@nestjs/common';
 import { Admin } from "../models/admin";
 
 @Injectable()
 export class AdminService {
     constructor(
-        @InjectModel(Admin)
-        private readonly adminModel: typeof Admin,
+        @Inject('ADMIN_REPOSITORY')
+        private readonly adminRepository: typeof Admin,
     ) {}
 
     async create(data): Promise<Admin> {
-        return await Admin.create(data);
+        return await this.adminRepository.create(data);
     }
-  }
+}

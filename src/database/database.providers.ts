@@ -7,15 +7,15 @@ import { Customer } from "../models/customer";
 import { Driver_Item } from "../models/driver_item";
 import { Review } from "../models/review";
 import { Settings } from "../models/settings";
-import { SequelizeModuleOptions, SequelizeOptionsFactory } from '@nestjs/sequelize';
+import { SequelizeOptionsFactory } from '@nestjs/sequelize';
 
 export class SequelizeConfigService implements SequelizeOptionsFactory {
-    createSequelizeOptions(): SequelizeModuleOptions {
+    createSequelizeOptions(): any {
       return {
-        //...databaseConfig,
+        ...databaseConfig,
         autoLoadModels: true,
-        synchronize: true, // set to true only in development to auto-create tables
-        models: [Admin, Company, Driver, Item, Customer, Driver_Item, Review, Settings], // Specify your Sequelize model(s) here
+        synchronize: true,
+        models: [Admin, Company, Driver, Item, Customer, Driver_Item, Review, Settings],
       };
     }
   }

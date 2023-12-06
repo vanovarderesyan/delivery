@@ -1,24 +1,17 @@
 import { Module } from '@nestjs/common';
-<<<<<<< HEAD
-import {AdminController} from "./admin.controller";
-import {AdminService} from "./admin.service";
-
-@Module({
-    controllers: [AdminController],
-    providers: [AdminService],
-    exports: [AdminService],
-=======
-import { SequelizeModule } from '@nestjs/sequelize';
-import { Admin } from '../models/admin';
 import { AdminController } from './admin.controller';
+import { AdminService } from './admin.service';
+import { adminProviders } from "./admin.providers";
+import { DatabaseModule } from "../database/database.module";
+import { AuthModule } from "../auth/auth.module";
 
 @Module({
-    imports: [
-        SequelizeModule.forFeature([Admin]),
-    ],
-    controllers: [AdminController],
-    providers: [],
-    exports: [],
->>>>>>> 6601b2e91ec030274c809891dd1fea50e761c21c
+  imports: [ DatabaseModule, AuthModule ],
+  controllers: [ AdminController ],
+  providers: [
+      AdminService,
+      ...adminProviders
+  ]
 })
+
 export class AdminModule {}

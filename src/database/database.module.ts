@@ -1,7 +1,9 @@
 import { Module } from '@nestjs/common';
 import { SequelizeConfigService } from './database.providers';
 import { SequelizeModule } from '@nestjs/sequelize';
-import { Admin } from 'src/models/admin';
+import * as dotenv from 'dotenv';
+
+dotenv.config();
 
 @Module({
     imports: [
@@ -12,4 +14,4 @@ import { Admin } from 'src/models/admin';
     providers: [],
     exports: [],
 })
-export class DatabaseModule { }
+export class DatabaseModule {}

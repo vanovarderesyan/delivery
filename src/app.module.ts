@@ -4,6 +4,10 @@ import { AppService } from './app.service';
 import { DatabaseModule } from './database/database.module';
 import { ConfigModule } from '@nestjs/config';
 import { AdminModule } from './admin/admin.module';
+import * as dotenv from 'dotenv';
+
+dotenv.config();
+
 
 @Module({
   imports: [
