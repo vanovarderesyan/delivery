@@ -1,7 +1,5 @@
-import {Table, Column, CreatedAt, Model, DataType, HasMany, BelongsToMany} from 'sequelize-typescript';
-import { Item } from "./item";
-import { Review } from "./review";
-import { Driver } from "./driver";
+import { Table, Column, CreatedAt, Model, DataType, HasMany, BelongsToMany } from 'sequelize-typescript';
+import { customerRegisterSteps } from "../enums/steps";
 
 @Table
 export class Customer extends Model<Customer> {
@@ -66,16 +64,10 @@ export class Customer extends Model<Customer> {
     organization_docs: string[];
 
     @Column({
-        type: DataType.STRING,
+        type: DataType.ENUM(customerRegisterSteps),
         allowNull: false,
     })
-    steps: string;
-
-    @HasMany(() => Item)
-    items: Item[];
-
-    @BelongsToMany(() => Driver, () => Review)
-    drivers: Driver[];
+    steps: customerRegisterSteps;
 
     @CreatedAt
     createdAt: Date;

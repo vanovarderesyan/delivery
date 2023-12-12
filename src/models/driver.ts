@@ -1,5 +1,6 @@
 import { Table, Column, CreatedAt, Model, DataType, HasMany } from 'sequelize-typescript';
 import { Truck } from "./truck";
+import { driverRegisterSteps } from "../enums/steps";
 
 @Table
 export class Driver extends Model<Driver> {
@@ -52,10 +53,10 @@ export class Driver extends Model<Driver> {
     address: string;
 
     @Column({
-        type: DataType.STRING,
+        type: DataType.ENUM(driverRegisterSteps),
         allowNull: false,
     })
-    steps: string;
+    steps: driverRegisterSteps;
 
     @HasMany(() => Truck)
     trucks: Truck[];

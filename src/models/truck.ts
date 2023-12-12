@@ -1,6 +1,6 @@
 import { Table, Column, CreatedAt, Model, DataType, BelongsTo } from 'sequelize-typescript';
 import { Driver } from "./driver";
-import {TruckCondition} from "../enums/truck";
+import { TruckCondition } from "../enums/truck";
 
 @Table
 export class Truck extends Model<Truck> {
@@ -87,12 +87,6 @@ export class Truck extends Model<Truck> {
         allowNull: false,
     })
     vehicle_title: string[];
-
-    @Column({
-        type: DataType.STRING,
-        allowNull: false,
-    })
-    steps: string;
 
     @BelongsTo(() => Driver)
     drivers: Driver;
