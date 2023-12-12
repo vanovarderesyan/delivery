@@ -1,69 +1,92 @@
-import {Table, Column, CreatedAt, Model, DataType, HasMany, BelongsToMany} from 'sequelize-typescript';
-import { Item } from "./item";
-import { Review } from "./review";
+import { Table, Column, CreatedAt, Model, DataType, BelongsTo } from 'sequelize-typescript';
 import { Driver } from "./driver";
+import {TruckCondition} from "../enums/truck";
 
 @Table
-export class Customer extends Model<Customer> {
+export class Truck extends Model<Truck> {
     @Column({
         type: DataType.STRING,
         allowNull: false,
     })
-    companies_name: string;
+    weight: string;
 
     @Column({
         type: DataType.STRING,
         allowNull: false,
     })
-    name: string;
+    length: string;
 
     @Column({
         type: DataType.STRING,
         allowNull: false,
     })
-    email: string;
+    width: string;
 
     @Column({
         type: DataType.STRING,
         allowNull: false,
     })
-    phone: string;
+    height: string;
 
     @Column({
         type: DataType.STRING,
         allowNull: false,
     })
-    password: string;
+    mark: string;
 
     @Column({
         type: DataType.STRING,
         allowNull: false,
     })
-    region: string;
+    model: string;
 
     @Column({
         type: DataType.STRING,
         allowNull: false,
     })
-    city: string;
+    data: string;
 
     @Column({
         type: DataType.STRING,
         allowNull: false,
     })
-    zip_code: string;
+    car_type: string;
+
+    @Column({
+        type: DataType.ENUM(...Object.values(TruckCondition)),
+        allowNull: false,
+    })
+    car_condition: TruckCondition;
 
     @Column({
         type: DataType.STRING,
         allowNull: false,
     })
-    address: string;
+    vin_code: string;
+
+    @Column({
+        type: DataType.INTEGER,
+        allowNull: false,
+    })
+    car_number: number;
 
     @Column({
         type: DataType.ARRAY(DataType.STRING),
         allowNull: false,
     })
-    organization_docs: string[];
+    cargo_insurance: string[];
+
+    @Column({
+        type: DataType.ARRAY(DataType.STRING),
+        allowNull: false,
+    })
+    car_photos: string[];
+
+    @Column({
+        type: DataType.ARRAY(DataType.STRING),
+        allowNull: false,
+    })
+    vehicle_title: string[];
 
     @Column({
         type: DataType.STRING,
@@ -71,11 +94,8 @@ export class Customer extends Model<Customer> {
     })
     steps: string;
 
-    @HasMany(() => Item)
-    items: Item[];
-
-    @BelongsToMany(() => Driver, () => Review)
-    drivers: Driver[];
+    @BelongsTo(() => Driver)
+    drivers: Driver;
 
     @CreatedAt
     createdAt: Date;

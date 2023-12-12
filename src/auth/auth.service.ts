@@ -1,9 +1,10 @@
 import { Inject, Injectable } from '@nestjs/common';
+import { AUTH_REPOSITORY } from "../constants";
 import * as bcrypt from 'bcrypt';
 
 @Injectable()
 export class AuthService {
-    @Inject('AUTH_REPOSITORY')
+    @Inject(AUTH_REPOSITORY)
     async hashPassword(password: string): Promise<string> {
         const saltRounds = 10;
         return await bcrypt.hash(password, saltRounds);

@@ -1,9 +1,5 @@
-import {Table, Column, CreatedAt, Model, DataType, BelongsTo, ForeignKey, BelongsToMany} from 'sequelize-typescript';
-import { Company } from "./company";
-import { Item } from "./item";
-import { Driver_Item } from "./driver_item";
-import { Customer } from "./customer";
-import { Review } from "./review";
+import { Table, Column, CreatedAt, Model, DataType, HasMany } from 'sequelize-typescript';
+import { Truck } from "./truck";
 
 @Table
 export class Driver extends Model<Driver> {
@@ -11,61 +7,19 @@ export class Driver extends Model<Driver> {
         type: DataType.STRING,
         allowNull: false,
     })
-    license: string;
+    first_name: string;
 
     @Column({
         type: DataType.STRING,
         allowNull: false,
     })
-    type: string;
-
-    @Column({
-        type: DataType.INTEGER,
-        allowNull: false,
-    })
-    max_weight: number;
-
-    @Column({
-        type: DataType.BOOLEAN,
-        allowNull: false,
-    })
-    substitute_driver: boolean;
+    second_name: string;
 
     @Column({
         type: DataType.STRING,
         allowNull: false,
     })
-    brand: string;
-
-    @Column({
-        type: DataType.STRING,
-        allowNull: false,
-    })
-    model: string;
-
-    @Column({
-        type: DataType.STRING,
-        allowNull: false,
-    })
-    color: string;
-
-    @Column({
-        type: DataType.STRING,
-        allowNull: false,
-    })
-    license_plates: string;
-
-    @Column({
-        type: DataType.BOOLEAN,
-        allowNull: false,
-    })
-    is_active: boolean;
-
-    @Column({
-        type: DataType.STRING,
-        allowNull: false,
-    })
-    username: string;
+    email: string;
 
     @Column({
         type: DataType.TEXT,
@@ -73,18 +27,38 @@ export class Driver extends Model<Driver> {
     })
     password: string;
 
-    @ForeignKey(() => Company)
-    @Column
-    company_id: number;
+    @Column({
+        type: DataType.STRING,
+        allowNull: false,
+    })
+    phone: string;
 
-    @BelongsTo(() => Company)
-    company: Company;
+    @Column({
+        type: DataType.STRING,
+        allowNull: false,
+    })
+    city: string;
 
-    @BelongsToMany(() => Item, () => Driver_Item)
-    items: Item[];
+    @Column({
+        type: DataType.STRING,
+        allowNull: false,
+    })
+    zip_code: string;
 
-    @BelongsToMany(() => Customer, () => Review)
-    customers: Customer[];
+    @Column({
+        type: DataType.STRING,
+        allowNull: false,
+    })
+    address: string;
+
+    @Column({
+        type: DataType.STRING,
+        allowNull: false,
+    })
+    steps: string;
+
+    @HasMany(() => Truck)
+    trucks: Truck[];
 
     @CreatedAt
     createdAt: Date;
