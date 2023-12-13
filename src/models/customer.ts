@@ -64,7 +64,7 @@ export class Customer extends Model<Customer> {
     organization_docs: string[];
 
     @Column({
-        type: DataType.ENUM(customerRegisterSteps),
+        type: DataType.ENUM(...Object.values(customerRegisterSteps)),
         allowNull: false,
     })
     steps: customerRegisterSteps;

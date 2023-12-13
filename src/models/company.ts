@@ -1,5 +1,4 @@
-import { Table, Column, CreatedAt, Model, DataType, HasMany } from 'sequelize-typescript';
-import { Driver } from "./driver";
+import { Table, Column, CreatedAt, Model, DataType } from 'sequelize-typescript';
 
 @Table
 export class Company extends Model<Company> {
@@ -8,9 +7,6 @@ export class Company extends Model<Company> {
         allowNull: false,
     })
     logo: string;
-
-    @HasMany(() => Driver)
-    drivers: Driver[];
 
     @Column({
         type: DataType.STRING,

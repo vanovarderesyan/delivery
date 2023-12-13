@@ -1,4 +1,4 @@
-import { Table, Column, CreatedAt, Model, DataType, BelongsTo } from 'sequelize-typescript';
+import { Table, Column, CreatedAt, Model, DataType, BelongsTo, ForeignKey } from 'sequelize-typescript';
 import { Driver } from "./driver";
 import { TruckCondition } from "../enums/truck";
 
@@ -87,6 +87,10 @@ export class Truck extends Model<Truck> {
         allowNull: false,
     })
     vehicle_title: string[];
+
+    @ForeignKey(() => Driver)
+    @Column
+    driverId: number;
 
     @BelongsTo(() => Driver)
     drivers: Driver;

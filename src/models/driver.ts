@@ -53,7 +53,7 @@ export class Driver extends Model<Driver> {
     address: string;
 
     @Column({
-        type: DataType.ENUM(driverRegisterSteps),
+        type: DataType.ENUM(...Object.values(driverRegisterSteps)),
         allowNull: false,
     })
     steps: driverRegisterSteps;

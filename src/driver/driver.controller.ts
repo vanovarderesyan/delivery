@@ -13,7 +13,7 @@ export class DriverController {
     @Post('register')
     async create(@Body() driverDto: DriverDto) {
         driverDto.password = await this.authService.hashPassword(driverDto.password);
-
+        
         return await this.driverService.create(driverDto);
     }
 
