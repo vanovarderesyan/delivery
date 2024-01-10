@@ -10,7 +10,6 @@ import * as dotenv from 'dotenv';
 
 dotenv.config();
 
-
 @Module({
   imports: [
     ConfigModule.forRoot({ isGlobal: true }),
@@ -22,4 +21,5 @@ dotenv.config();
   controllers: [AppController],
   providers: [AppService],
 })
+
 export class AppModule {}

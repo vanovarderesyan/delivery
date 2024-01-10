@@ -23,3 +23,6 @@ export const ADMIN = 'ADMIN';
 export const CUSTOMER = 'CUSTOMER';
 export const DRIVER = 'DRIVER';
 export const COMPANY_DRIVER = 'COMPANY_DRIVER';
+
+// auth
+export const JWT_SECRET_KEY = '3ce9c7f508fc79241a9251e239ab7ee4942caa6a'

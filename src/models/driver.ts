@@ -4,6 +4,10 @@ import { driverRegisterSteps } from "../enums/steps";
 
 @Table
 export class Driver extends Model<Driver> {
+
+    @HasMany(() => Truck)
+    trucks: Truck[];
+
     @Column({
         type: DataType.STRING,
         allowNull: false,
@@ -57,9 +61,6 @@ export class Driver extends Model<Driver> {
         allowNull: false,
     })
     steps: driverRegisterSteps;
-
-    @HasMany(() => Truck)
-    trucks: Truck[];
 
     @CreatedAt
     createdAt: Date;

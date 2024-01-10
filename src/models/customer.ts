@@ -1,4 +1,4 @@
-import { Table, Column, CreatedAt, Model, DataType, HasMany, BelongsToMany } from 'sequelize-typescript';
+import { Table, Column, CreatedAt, Model, DataType } from 'sequelize-typescript';
 import { customerRegisterSteps } from "../enums/steps";
 
 @Table

@@ -4,6 +4,14 @@ import { TruckCondition } from "../enums/truck";
 
 @Table
 export class Truck extends Model<Truck> {
+
+    @ForeignKey(() => Driver)
+    @Column
+    driverId: number;
+
+    @BelongsTo(() => Driver)
+    drivers: Driver;
+
     @Column({
         type: DataType.STRING,
         allowNull: false,
@@ -87,13 +95,6 @@ export class Truck extends Model<Truck> {
         allowNull: false,
     })
     vehicle_title: string[];
-
-    @ForeignKey(() => Driver)
-    @Column
-    driverId: number;
-
-    @BelongsTo(() => Driver)
-    drivers: Driver;
 
     @CreatedAt
     createdAt: Date;

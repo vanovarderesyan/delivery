@@ -9,4 +9,5 @@ export class CustomerDto {
     readonly zip_code: string;
     readonly address: string;
     readonly organization_docs: string[];
+    readonly steps: string;
 }

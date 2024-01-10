@@ -8,6 +8,7 @@ import { Driver_Item } from "../models/driver_item";
 import { Review } from "../models/review";
 import { Settings } from "../models/settings";
 import { SequelizeOptionsFactory } from '@nestjs/sequelize';
+import { Truck } from "../models/truck";
 
 export class SequelizeConfigService implements SequelizeOptionsFactory {
     createSequelizeOptions(): any {
@@ -15,7 +16,7 @@ export class SequelizeConfigService implements SequelizeOptionsFactory {
         ...databaseConfig,
         autoLoadModels: true,
         synchronize: true,
-        models: [Admin, Company, Driver, Item, Customer, Driver_Item, Review, Settings],
+        models: [Admin, Company, Driver, Item, Customer, Driver_Item, Review, Settings, Truck],
       };
     }
   }
