@@ -29,7 +29,9 @@ export class AuthGuard implements CanActivate {
         } catch {
             throw new UnauthorizedException();
         }
+        console.log('inside the guard');
         return true;
+
     }
 
     private extractTokenFromHeader(request: Request): string | undefined {

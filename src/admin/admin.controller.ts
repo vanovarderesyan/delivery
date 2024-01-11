@@ -1,7 +1,8 @@
-import { Controller, Post, Get, Body } from '@nestjs/common';
+import { Controller, Post, Get, Body, UseGuards, Request } from '@nestjs/common';
 import { AdminDto } from 'src/dtoS/admin';
 import { AdminService } from './admin.service';
 import { AuthService } from "../auth/auth.service";
+import { AuthGuard } from '../auth/auth.guard';
 
 @Controller('auth')
 export class AdminController {
@@ -17,9 +18,15 @@ export class AdminController {
 
     return await this.adminService.create(adminDto);
   }
-  
-  @Get('a')
-  async get() {
-    return 'aaaaaaaaaaaaaaa';
+
+  @UseGuards(AuthGuard)
+  @Get('profile')
+  getProfile(@Request() req) {
+    return req.user;
+  }
+
+  @Post('login')
+  signIn(@Body() signInDto: Record<string, any>) {
+    return this.authService.signIn(signInDto.username, signInDto.password);
   }
 }
